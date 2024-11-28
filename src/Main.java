@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.ArrayList;
 import java.util.List;
 
+import Lecture4_interfaces_abstract_classes.*;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 /*
@@ -144,13 +145,29 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InsufficientFundsException {
         // This is the client code
         // Uncomment the following lines to test the class which you would like to test
 
-        // testTransaction1()
-        // testTransaction2()
-        // testTransaction3()
-        // testTransaction4()
+        // Create a new BankAccount object with an initial balance of 1000.0
+        BankAccount account = new BankAccount(1000.0);
+
+        // Print the account's current balance
+        System.out.println("Account Balance: $" + account.getBalance());
+
+        // Create a DepositTransaction and apply it
+        Calendar date = Calendar.getInstance();
+        DepositTransaction deposit = new DepositTransaction(500, date);
+        deposit.apply(account);  // Deposit $500 into the account
+        System.out.println("Account Balance after Deposit: $" + account.getBalance());
+
+        // Create a WithdrawalTransaction and apply it
+        WithdrawalTransaction withdrawal = new WithdrawalTransaction(300, date);
+        withdrawal.apply(account);  // Withdraw $300 from the account
+        System.out.println("Account Balance after Withdrawal: $" + account.getBalance());
+
+        // Attempt to withdraw more than the available balance (will throw an exception)
+        WithdrawalTransaction withdrawalInsufficient = new WithdrawalTransaction(1500, date);
+        withdrawalInsufficient.apply(account);  // This should throw an exception
     }
 }

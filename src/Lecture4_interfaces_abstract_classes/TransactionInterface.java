@@ -16,6 +16,10 @@ public interface TransactionInterface {
     // Method to get a unique identifier for the transaction
     String getTransactionID();
 
+	void printTransactionDetails();
+
+	void apply(BankAccount ba);
+
 }
 
 

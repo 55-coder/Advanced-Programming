@@ -13,4 +13,9 @@ public class BankAccount {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+	public String getAccountID() {
+		// TODO Auto-generated method stub
+		return "AccountID-123";
+	}
 }
